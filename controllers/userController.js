@@ -5,17 +5,13 @@ const addUserDetails = async (req, res) => {
         const user = req.body;
         console.log(user)
         let resp = await userModel.findOne({ username: user.username });
-        // if (resp) {
-        //     resp = {
-        //         ...resp,
-        //         user
-        //     }
-        //     await resp.save();
-        // }
-        // else {
-        //     resp = await userModel.create(user);
-        // }
-        res.json({ message: "Data Uploaded!", data: resp })
+        if (resp) {
+            await userModel.updateOne({ username: user.username }, user)
+        }
+        else {
+            resp = await userModel.create(user);
+        }
+        res.json({ message: "Data Uploaded!" })
     } catch (error) {
         console.log("Error", error)
         res.status(500).json({ error: error })

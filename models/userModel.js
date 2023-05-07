@@ -1,27 +1,12 @@
 const mongoose = require('mongoose');
 
-const dblink = `mongodb+srv://Punisher007:nBDKJbMPCcpLVZ4H@cluster0.du8egil.mongodb.net/?retryWrites=true&w=majority`;
+const dblink = `mongodb://Punisher007:tya!Hjzy6LjxYqW@ac-7bjdvak-shard-00-00.du8egil.mongodb.net:27017,ac-7bjdvak-shard-00-01.du8egil.mongodb.net:27017,ac-7bjdvak-shard-00-02.du8egil.mongodb.net:27017/?ssl=true&replicaSet=atlas-yb6gbv-shard-0&authSource=admin&retryWrites=true&w=majority`;
 
-// Add options to increase timeout limit
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 10000, // Increase timeout to 10 seconds
-};
+// const dblink = `mongodb+srv://Punisher007:tya!Hjzy6LjxYqW@cluster0.du8egil.mongodb.net/?retryWrites=true&w=majority`
 
-// mongoose.connect('mongodb://localhost:27017/myapp', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-//     console.log("Connected to MongoDB!");
-// });
-
-mongoose.connect(dblink, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dblink)
     .then(() => console.log("Connected to MongoDB Atlas!"))
     .catch(error => console.log(error));
-
-
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -31,6 +16,8 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
     },
+    firstname: String,
+    lastname: String,
     image: {
         type: String
     },
