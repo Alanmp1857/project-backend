@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     },
     age: {
         type: Number
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 });
 
